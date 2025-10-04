@@ -27,7 +27,10 @@ Think about which debugging methods you found most useful and how you might appl
 console.log("Welcome to the bootcamp
 
 // What’s Wrong?
-
+// missing " .); " this is a syntax error
+// fixed:
+console.log("Welcome to the bootcamp.");
+    
 
 // Program B
 // Description:
@@ -40,8 +43,25 @@ for (let i = 0; i < numbers.length; i++) {
 }
 
 // What’s Wrong?
+// "eight" is a string and therefore it cannot be multiplied by 2. it will produce "NaN". This would be a logic error
+// solution:
+let numbers = [2, 4, 8];
+for (let i = 0; i < numbers.length; i++) {
+  let doubled = numbers[i] * 2;
+  console.log(doubled);
+}
 
+// or we can do this
+let numbers = [2, 4, "eight"];
 
+for (let i = 0; i < numbers.length; i++) {
+  if (typeof numbers[i] === "number") {
+    let doubled = numbers[i] * 2;
+    console.log(doubled);
+  } else {
+    console.log(`Skipping non-number value: ${numbers[i]}`);
+  }
+}
 
 // Program C (Logic Error)
 // Description:
@@ -60,3 +80,15 @@ function isPrime(num) {
 console.log(isPrime(7)); // Expected true but gets false
 
 // What’s Wrong?
+// the "if num % i === 0" is causing the program to return non-prime numbers as true. Then at the end it says to return false. Basically it is backwards 
+
+// potential solution:
+function isPrime(num) {
+  if (num < 2) return false; // 0 and 1 are not prime
+  for (let i = 2; i < num; i++) {
+    if (num % i === 0) {
+      return false; //  Not prime, divisible by i
+    }
+  }
+  return true; //  No divisors found, it is prime
+}
